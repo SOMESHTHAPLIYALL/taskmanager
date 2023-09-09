@@ -1,16 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Modal = ({
-  isVisible,
-  onClose,
-  name,
-  todoid,
-  edit,
-  del,
-  Title,
-  Description,
-}) => {
+const Modal = ({ isVisible, onClose, name, todoid, edit }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -18,7 +9,7 @@ const Modal = ({
     const user = JSON.parse(localStorage.getItem("user"));
     if (edit) {
       try {
-        await axios.post("/todos/editTodos", {
+        await axios.post("/api/v1/todos/editTodos", {
           todoid: todoid,
           title: title,
           description: description,
@@ -30,7 +21,7 @@ const Modal = ({
       }
     } else {
       try {
-        await axios.post("/todos/postTodos", {
+        await axios.post("/api/v1/todos/postTodos", {
           title: title,
           description: description,
           userid: user._id,

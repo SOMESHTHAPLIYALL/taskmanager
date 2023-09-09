@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { MdOutlineDownloadDone } from "react-icons/md";
+
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { BsDatabaseFillX } from "react-icons/bs";
 import Modal from "./Modal";
@@ -11,12 +11,13 @@ const AllTask = () => {
   const [edit, setEdit] = useState(false);
   const [todoid, setTodoid] = useState("");
   const [delid, setDelid] = useState();
-  const [colorId, setColorId] = useState([]);
 
   const showData = async (req, res) => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
-      const res = await axios.post("/todos/getTodos", { userid: user._id });
+      const res = await axios.post("/api/v1/todos/getTodos", {
+        userid: user._id,
+      });
       setTodos(res.data);
     } catch (error) {
       console.log(error);
@@ -25,7 +26,7 @@ const AllTask = () => {
 
   const handleDel = async (req, res) => {
     try {
-      await axios.post("/todos/deleteTodos", { delid: delid });
+      await axios.post("/api/v1/todos/deleteTodos", { delid: delid });
       window.location.reload();
     } catch (error) {
       console.log(error);

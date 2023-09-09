@@ -33,7 +33,7 @@ const SignUpPage = () => {
       }
       console.log(name, email, password);
 
-      await axios.post("/users/register", {
+      await axios.post("/api/v1/users/register", {
         name: name,
         password: password,
         email: email,

@@ -30,7 +30,7 @@ const Loginpage = () => {
         alert("Please fill all the fields");
         return;
       }
-      const { data } = await axios.post("/users/login", {
+      const { data } = await axios.post("/api/v1/users/login", {
         email: email,
         password: password,
       });
